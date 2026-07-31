@@ -7,13 +7,13 @@ from retriever import retrieve_relevant_chunks
 load_dotenv()
 
 PROMPT_TEMPLATE = """You are a helpful study assistant answering questions
-based ONLY on the provided context from an AI/ML interview prep document.
+based ONLY on the provided context from the uploaded document.
 
 Rules:
 - Answer using only the information in the context below.
 - If the context doesn't contain enough information to answer,
   say "I don't have enough information in the document to answer that."
-- Keep answers clear and concise, as if explaining to someone studying for an interview.
+- Keep answers clear, accurate, and concise.
 {history_section}
 Context:
 {context}
@@ -67,7 +67,7 @@ def condense_question(question: str, history):
 
 def get_llm():
     return ChatGoogleGenerativeAI(
-        model="gemini-1.5-flash",
+        model="gemini-3.5-flash-lite",
         google_api_key=os.getenv("GOOGLE_API_KEY"),
         temperature=0.2  # low temperature keeps answers factual and consistent
     )
